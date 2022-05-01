@@ -23,7 +23,16 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
-  gem 'spring'
+  gem 'spring', '~> 2.0.2'
+  gem 'spring-watcher-listen', '~> 2.0.1'
+end
+
+group :test do
+  gem 'rails-controller-testing', '1.0.4'
+  gem 'minitest', '5.11.3'
+  gem 'minitest-reporters', '1.3.8'
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
