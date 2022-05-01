@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: <%= SecureRandom.uuid %>
+  name: one
+  price: 100
+  description: one
+  payment_date: 2022-05-01 14:45:03
+  payment_interval_status: month
+  cancel_page_link: one
+  notified: false
+  disabled: false
+  user: michael
+
+two:
+  id: <%= SecureRandom.uuid %>
+  name: two
+  price: 200
+  description: two
+  payment_date: 2022-05-01 14:45:03
+  payment_interval_status: month
+  cancel_page_link: two
+  notified: false
+  disabled: false
+  user: archer

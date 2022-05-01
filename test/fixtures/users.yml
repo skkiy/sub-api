@@ -1,0 +1,13 @@
+michael:
+  id: <%= SecureRandom.uuid %>
+  name: Michael Example
+  email: michael@example.com
+  uid: michael@example.com
+  provider: email
+
+archer:
+  id: <%= SecureRandom.uuid %>
+  name: Sterling Archer
+  email: duchess@example.gov
+  uid: duchess@example.gov
+  provider: email

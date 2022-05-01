@@ -16,10 +16,16 @@ class UserTest < ActiveSupport::TestCase
   test "invalid name" do
     @user.name = "  "
     assert_not @user.valid?
+    @user.name = "a" * 51
+    assert_not @user.valid?
   end
 
   test "invalid email" do
     @user.email = "   "
+    assert_not @user.valid?
+    @user.email = "test"
+    assert_not @user.valid?
+    @user.email = "a" * 255 + "@example.com"
     assert_not @user.valid?
   end
 end

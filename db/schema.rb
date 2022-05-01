@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_01_031241) do
+ActiveRecord::Schema.define(version: 2022_05_01_054503) do
+
+  create_table "subscriptions", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.string "description"
+    t.datetime "payment_date", null: false
+    t.column "payment_interval_status", "enum('month','year')", null: false
+    t.string "cancel_page_link"
+    t.boolean "notified", default: false
+    t.boolean "disabled", default: false
+    t.string "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
 
   create_table "users", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -42,4 +57,5 @@ ActiveRecord::Schema.define(version: 2022_05_01_031241) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "subscriptions", "users"
 end
