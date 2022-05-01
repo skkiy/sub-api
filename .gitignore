@@ -26,5 +26,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# IDE
+# Ignore secret key for JWT.
+/config/secret.key
+
+# Ignore IDE settings.
 .idea
+
