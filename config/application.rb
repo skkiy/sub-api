@@ -37,5 +37,15 @@ module SubApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.middleware.use ActionDispatch::Cookies
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+                 headers: :any,
+                 expose: %w(access-token expiry token-type uid client),
+                 methods: [:get, :post, :patch, :put, :delete, :options, :head]
+      end
+    end
   end
 end
