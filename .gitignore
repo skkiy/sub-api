@@ -32,6 +32,9 @@
 # Ignore spring
 spring/
 
+# Ignore Env files
+.env.local
+
 # Ignore IDE settings.
 .idea
 

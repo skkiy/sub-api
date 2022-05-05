@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.6'
 
 gem 'rails', '~> 6.1.5'
-gem 'mysql2', '~> 0.5'
+gem 'sqlite3'
 gem 'puma', '~> 5.0'
 # gem 'redis', '~> 4.0'
 gem 'bcrypt', '~> 3.1.7'
@@ -16,6 +16,7 @@ gem 'devise_token_auth'
 gem 'rack-cors'
 gem 'omniauth'
 gem 'active_model_serializers'
+gem 'native_enum'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

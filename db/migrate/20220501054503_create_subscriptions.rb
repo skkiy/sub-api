@@ -5,7 +5,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.integer :price, null: false
       t.string :description
       t.datetime :payment_date, null: false
-      t.column :payment_interval_status, "enum('month', 'year')", null: false
+      t.column :payment_interval_status, :enum, :limit => %w[month year], null: false
       t.string :cancel_page_link
       t.boolean :notified, default: false
       t.boolean :disabled, default: false

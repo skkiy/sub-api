@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2022_05_01_054503) do
 
-  create_table "subscriptions", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "subscriptions", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.string "description"
     t.datetime "payment_date", null: false
-    t.column "payment_interval_status", "enum('month','year')", null: false
+    t.string "payment_interval_status", null: false
     t.string "cancel_page_link"
     t.boolean "notified", default: false
     t.boolean "disabled", default: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_05_01_054503) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
-  create_table "users", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", id: :string, force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
