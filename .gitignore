@@ -7,6 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default SQLite databse.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.sqlite3-*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -37,4 +42,4 @@ spring/
 
 # Ignore IDE settings.
 .idea
-
+.DS_store
