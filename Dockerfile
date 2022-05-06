@@ -13,6 +13,7 @@ ENV DB_PATH '/data/development.sqlite3'
 ENV REPLICA_URL 's3://sub-db/development/development.sqlite3'
 ENV LITESTREAM_ACCESS_KEY_ID '************'
 ENV LITESTREAM_SECRET_ACCESS_KEY '************'
+ENV GOOGLE_APPLICATION_CREDENTIALS 'config/credentials.json'
 
 WORKDIR /app
 ADD Gemfile /app/

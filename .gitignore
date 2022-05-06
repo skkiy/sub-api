@@ -34,6 +34,9 @@
 # Ignore secret key for JWT.
 /config/secret.key
 
+# Ignore credentials.
+/config/credentials.json
+
 # Ignore spring
 spring/
 
