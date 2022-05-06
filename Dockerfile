@@ -17,7 +17,8 @@ ARG SECRET_KEY_BASE
 WORKDIR /app
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
-RUN bundle install
+RUN bundle config set --local without 'development test' && \
+    bundle install
 
 ADD . /app
 # RUN bundle exec rake assets:precompile
@@ -30,4 +31,4 @@ EXPOSE 8080
 CMD \
   [ ! -f ${DB_PATH} ] && litestream restore -v -if-replica-exists -o $DB_PATH "${REPLICA_URL}" \
   ; bundle exec rake db:migrate \
-  ; litestream replicate -exec "bundle exec rails server -p 8080" $DB_PATH $REPLICA_URL
+  ; litestream replicate -exec "bundle exec rails server -b 0.0.0.0 -p 8080" $DB_PATH $REPLICA_URL
