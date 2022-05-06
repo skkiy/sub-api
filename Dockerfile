@@ -8,11 +8,10 @@ RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz && \
     apt-get install -y sqlite3 && \
     rm -rf /var/lib/apt/lists/*
 
-ENV RAILS_ENV 'development'
-ENV DB_PATH '/data/development.sqlite3'
-ENV REPLICA_URL 's3://sub-db/development/development.sqlite3'
-ENV LITESTREAM_ACCESS_KEY_ID '************'
-ENV LITESTREAM_SECRET_ACCESS_KEY '************'
+ARG RAILS_ENV
+ENV RAILS_ENV ${RAILS_ENV}
+ENV DB_PATH '/data/${RAILS_ENV}.sqlite3'
+ENV REPLICA_URL 'gcs://sub-db/${RAILS_ENV}.sqlite3'
 ENV GOOGLE_APPLICATION_CREDENTIALS 'config/credentials.json'
 
 WORKDIR /app

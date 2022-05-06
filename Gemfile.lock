@@ -105,6 +105,8 @@ GEM
       guard-compat (~> 1.2)
       minitest (>= 3.0)
     hashie (5.0.0)
+    health_check (3.1.0)
+      railties (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.2)
@@ -229,6 +231,7 @@ DEPENDENCIES
   devise_token_auth
   guard
   guard-minitest
+  health_check
   jwt
   listen (~> 3.3)
   minitest (= 5.11.3)

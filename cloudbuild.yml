@@ -1,0 +1,25 @@
+steps:
+  - id: "build image"
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "build", "--build-arg", "MASTER_KEY=$$RAILS_KEY", "-t", "gcr.io/${PROJECT_ID}/sub-api:$SHORT_SHA", "." ]
+    secretEnv:
+      - "RAILS_KEY"
+
+  - id: "push image"
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "push", "gcr.io/${PROJECT_ID}/sub-api:$SHORT_SHA" ]
+
+  - id: "deploy run"
+    name: "gcr.io/cloud-builders/gcloud"
+    args: [ "run", "deploy", "sub-api",
+            "--image", "gcr.io/${PROJECT_ID}/sub-api:$SHORT_SHA",
+            "--region", "asia-northeast1",
+    ]
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/latest
+      env: RAILS_KEY
+
+images:
+  - "gcr.io/${PROJECT_ID}/sub-api:$SHORT_SHA"

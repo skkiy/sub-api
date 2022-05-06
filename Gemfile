@@ -17,6 +17,7 @@ gem 'rack-cors'
 gem 'omniauth'
 gem 'active_model_serializers'
 gem 'native_enum'
+gem 'health_check'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
