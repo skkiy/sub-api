@@ -8,11 +8,11 @@ RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz && \
     apt-get install -y sqlite3 && \
     rm -rf /var/lib/apt/lists/*
 
-ARG RAILS_ENV
-ENV RAILS_ENV ${RAILS_ENV}
-ENV DB_PATH '/data/${RAILS_ENV}.sqlite3'
-ENV REPLICA_URL 'gcs://sub-db/${RAILS_ENV}.sqlite3'
+ARG RAILS_ENV=development
+ENV DB_PATH '/data/$RAILS_ENV.sqlite3'
+ENV REPLICA_URL 'gcs://sub-db/$RAILS_ENV.sqlite3'
 ENV GOOGLE_APPLICATION_CREDENTIALS 'config/credentials.json'
+ARG SECRET_KEY_BASE
 
 WORKDIR /app
 ADD Gemfile /app/
@@ -20,14 +20,14 @@ ADD Gemfile.lock /app/
 RUN bundle install
 
 ADD . /app
-RUN bundle exec rake
+# RUN bundle exec rake assets:precompile
 
 RUN mkdir "/data" && \
-    ln -nfs $DB_PATH /app/db/development.sqlite3
+    ln -nfs $DB_PATH /app/db/$RAILS_ENV.sqlite3
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD \
-  [ ! -f $DB_PATH ] && litestream restore -v -if-replica-exists -o $DB_PATH "${REPLICA_URL}" \
+  [ ! -f ${DB_PATH} ] && litestream restore -v -if-replica-exists -o $DB_PATH "${REPLICA_URL}" \
   ; bundle exec rake db:migrate \
-  ; litestream replicate -exec "bundle exec rails server -b 0.0.0.0 -p 8000" $DB_PATH $REPLICA_URL
+  ; litestream replicate -exec "bundle exec rails server -p 8080" $DB_PATH $REPLICA_URL

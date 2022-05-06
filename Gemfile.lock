@@ -231,7 +231,7 @@ DEPENDENCIES
   devise_token_auth
   guard
   guard-minitest
-  health_check
+  health_check (~> 3.1.0)
   jwt
   listen (~> 3.3)
   minitest (= 5.11.3)
